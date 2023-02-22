@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Navigation Uygulaması</title>
+    <link rel="stylesheet" type="text/css" href="/public/css/site.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">SelfCheck</div>
+            <div>
+                <ul class="nav-menu">
+                    <li class="menu-item"><a href="#">Ana Sayfa</a></li>
+                    <!--<li class="menu-item"><a href="#">
+                        <select>
+                            <option>Özellikler</option>
+                            <option>HTML</option>
+                            <option>CSS</option>
+                            <option>JavaScript</option>
+                        </select>
+                    </a></li>-->
+                    <li class="menu-item dropbtn"><a href="#">Özellikler</a>
+                        <div class="dropbox">
+                            <div class="drop-item"><a href="#">HTML</a></div>
+                            <div class="drop-item"><a href="#">CSS</a></div>
+                            <div class="drop-item"><a href="#">JavaScript</a></div>
+                            <div class="drop-item"><a href="#">NodeJs</a></div>
+                        </div>
+                    </li>
+                    <li class="menu-item"><a href="#">İletişim</a></li>
+                    <li class="menu-item"><a href="#">Login</a></li>
+                    <li class="menu-item"><a href="#">Signup</a></li>
+                    <li class="menu-item dropbtn"><a>User</a>
+                        <div class="dropbox">
+                            <div class="drop-item"><a href="#">User Info</a></div>
+                            <div class="drop-item"><a href="#">Logout</a></div>
+                        </div>
+                    </li>
+                    <div class="animation"></div>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container"><%- body %></div>
+
+    <script>
+        const elements = document.querySelectorAll(".menu-item");
+
+        elements.forEach(element => {
+            element.addEventListener("mouseover", e =>{
+                const anim = document.querySelector(".animation");
+                anim.style.width = element.clientWidth + "px";
+                anim.style.height = (element.clientHeight - 30) + "px";;
+                anim.style.top = (element.offsetTop + 15) + "px";
+                anim.style.left = element.offsetLeft + "px";
+            });
+        });
+    </script>
+</body>
+</html>
