@@ -1,0 +1,38 @@
+<style>
+    input{
+        height: 2rem;
+    }
+
+    input[type="submit"]{
+        width: 5rem;
+    }
+
+   .warning{
+        margin-left: 1rem;
+        color:red;
+        text-align: end;
+   }
+</style>
+
+<div style="display: flex; width: 100%; height: calc(100vh - 200px); justify-content: center; align-items: center;">
+    <div id="login">
+        <form name="login" action="/users/sign" method="post">
+            <div style="display:grid; grid-template-columns: 150px 200px">
+                <p>Kullanıcı Adı</p>
+                <input id="username" type="text" name="username">
+
+                <p>Şifre</p>
+                <input id="password" type="password" name="password">
+
+                <p></p>
+                <p style="width:100%; text-align: right">
+                    <input type="submit" value="Giriş">
+                </p>               
+            </div>
+        </form>
+        <%if(error){%>
+        <p class="warning">Kullanıcı adınız veya şifreniz hatalı !</p> 
+        <%}%>
+    </div>
+</div>
+

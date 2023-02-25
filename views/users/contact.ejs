@@ -1,0 +1,64 @@
+<style>
+    input{
+        height: 2rem;
+        width: 20rem;
+    }
+
+    input[type=submit]{
+        height: 2rem;
+        width: 5rem;
+        margin: 1em;
+    }
+
+    textarea{
+        height: 8rem;
+        width: 30rem;
+    }
+
+   .warning{
+    margin-left: 1rem;
+    color:red;
+   }
+</style>
+
+<div>
+    <div style="display:flex; justify-content: center; margin-top: 3em;">
+        <form id="contact" action="/users/sendmail" method="post">
+            <p><h1>İletişim Formu</h1></p>
+            <div style="display:grid; grid-template-columns: 150px 200px 300px;">
+                <p>Adınız:</p>
+                <input type="text" name="name" maxlength="30">
+                <p id="w-name" class="warning"></p>
+
+                <p>Eposta adresiniz:</p>
+                <input type="mail" name="mail" maxlength="50">
+                <p id="w-mail" class="warning"></p>
+
+                <p>Konu:</p>
+                <input type="text" name="subject" maxlength="50"> 
+                <p id="w-subject" class="warning"></p>
+
+                <p>Mesaj:</p>
+                <textarea name="mailbody" maxlength="500"></textarea>
+                <p id="w-mailbody" class="warning"></p>
+
+                <p></p><p></p>
+                <p style="text-align: right;">
+                    <input type="submit" value="Gönder">
+                </p>                
+            </div>
+            <div class="info"></div>
+        </form>
+    </div>
+</div>
+<%if(typeof send != "undefined"){%>
+    <%if(send == "send"){%>
+        <script>document.querySelector(".info").innerHTML = "Mailiniz gönderildi...";</script>
+    <%} else {%>
+        <script>document.querySelector(".info").innerHTML = "Mailiniz gönderilemedi...";</script>
+    <%}%>
+<%}%>
+
+
+
+

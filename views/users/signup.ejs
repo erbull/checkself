@@ -1,0 +1,77 @@
+<style>
+    input{
+        height: 2rem;
+    }
+
+    input[type="submit"]{
+        width: 5rem;
+    }
+
+   .warning{
+        margin-left: 1rem;
+        color:red;
+        visibility: hidden;
+   }
+</style>
+
+<div style="display: flex; width: 100%; height: calc(100vh - 200px); justify-content: center; align-items: center;">
+    <div id="signup">
+        <form id="signup" name="signup" action="/users/signup" method="post">
+            <p><h1>Kullanıcı Kayıt Formu</h1></p> 
+            <div style="display:grid; grid-template-columns: 150px 220px 150px;">
+                <p>Kullanıcı Adı (e-mail)</p> 
+                <input id="username" type="text" name="username" value="">
+                <p id="w-username" class="warning">!</p>
+
+                <p>Adı</p>
+                <input id="name" type="text" name="name" value="">
+                <p id="w-name" class="warning">!</p>
+
+                <p>Soyadı</p>
+                <input id="lastname" type="text" name="lastname" value=""> 
+                <p id="w-lastname" class="warning">!</p>
+
+                <p>Şifre</p>
+                <input id="password" type="password" name="password" value="">
+                <p id="w-password" class="warning">!</p>
+
+                <p>Şifre (Tekrar)</p>
+                <input id="verify" type="password" name="verify" value="">
+                <p id="w-verify" class="warning">!</p>
+                <p></p>
+
+                <p style="width:100%; text-align: right">
+                    <input type="submit" value="Kaydol">
+                </p>                
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    if("<%=error%>" != ""){
+        document.querySelector("#username").value = "<%-user.username%>";
+        document.querySelector("#name").value = "<%-user.name%>";
+        document.querySelector("#lastname").value = "<%-user.lastname%>";
+        document.querySelector("#password").value = "<%-user.password%>";
+        document.querySelector("#verify").value = "<%-user.verify%>";
+
+        document.querySelector("#w-username").innerHTML = "! ";
+        document.querySelector("#w-username").innerHTML += "<%-error%>" == "11000" ? "Kullanıcı mevcut" : "<%-error%>";
+        document.querySelector("#w-username").style.visibility = "visible";
+    }
+
+    const signupform = document.querySelector("#signup");
+
+    signupform.addEventListener("submit", (e) => {
+        let err = [];
+        document.querySelector("#w-username").style.visibility = "hidden";
+        if(document.querySelector("#username").value == "") {err.push("1"); document.querySelector("#w-username").style.visibility = "visible"};
+        if(document.querySelector("#name").value == "") {err.push("2"); document.querySelector("#w-name").style.visibility = "visible"};
+        if(document.querySelector("#lastname").value == "") {err.push("3"); document.querySelector("#w-lastname").style.visibility = "visible"};
+        if(document.querySelector("#password").value == "") {err.push("4"); document.querySelector("#w-password").style.visibility = "visible"};
+        if(document.querySelector("#password").value !== document.querySelector("#verify").value) {err.push("5"); document.querySelector("#w-verify").style.visibility = "visible"};
+
+        if(err.length > 0) e.preventDefault();
+    })
+</script>
