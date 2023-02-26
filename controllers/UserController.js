@@ -33,7 +33,9 @@ function _postSignup(req, res){
             });
         }
         else {
-            console.log(result);
+            req.session.username = result.username;
+            req.session.name = result.name;
+            req.session.lastname = result.lastname;
             res.redirect("/");
         }
     })
